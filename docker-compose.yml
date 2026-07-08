@@ -1,0 +1,35 @@
+services:
+  rodel-app:
+    build: .
+    container_name: ${CONTAINER_NAME}
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    ports:
+      - "${APP_PORT}:8000"
+
+    volumes:
+      - ${FRAMEWORK_DIR}:/app/framework
+      - ${POLICIES_DIR}:/app/framework/policies
+      - ./database:/app/database
+
+    networks:
+      rodel_app_net:
+        ipv4_address: ${APP_IP}
+      rodelsoft_net: {}
+
+    extra_hosts:
+      - "host.docker.internal:${DOCKER_HOST_GATEWAY_IP}"
+
+networks:
+  rodel_app_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${DOCKER_SUBNET}
+
+  rodelsoft_net:
+    external: true
+    name: ${DOCKER_EXTERNAL_NETWORK}

@@ -1,0 +1,6 @@
+import os
+
+CONTROL_PLANE_BASE_URL = os.getenv("CONTROL_PLANE_BASE_URL")
+CONTROL_PLANE_TIMEOUT = float(os.getenv("CONTROL_PLANE_TIMEOUT", "5"))
+
+DOMAIN_APP_ID = int(os.getenv("DOMAIN_APP_ID","0",))
