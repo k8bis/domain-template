@@ -23,7 +23,7 @@ def get_system_services(
     request: Request,
     db: Session = Depends(get_db),
     authorization: str | None = Header(default=None),
-    x_app_id: int | None = Header(default=None),
+    x_app_id: int | None = Header(default=None, alias="X-Rodel-App-Id"),
     x_client_id: int | None = Header(default=None),
 ):
 

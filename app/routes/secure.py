@@ -7,7 +7,7 @@ router = APIRouter()
 @router.get("/secure-test")
 def secure_test(
     request: Request,
-    x_app_id: int | None = Header(None),
+    x_app_id: int | None = Header(default=None, alias="X-Rodel-App-Id"),
     x_client_id: int | None = Header(None),
     authorization: str | None = Header(None),
 ):
